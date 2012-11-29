@@ -2,15 +2,15 @@
 
 Schedule Attributes allows models (ORM agnostic) to accept recurring schedule form parameters and translate them into an [IceCube](https://github.com/seejohnrun/ice_cube/) `Schedule` object. Schedule Attributes adds `#schedule_attributes` and `#schedule_attributes=` methods that let your model automatically populate Rails forms and receive HTML form parameters. Additionally, it provides access to the `IceCube::Schedule` object itself.
 
+**Note**: This is a fork of [ableGray/Schedule-Attributes](https://github.com/ableGray/Schedule-Attributes) that has been updated for compatibility with the latest release of ice_cube.
+
 ## Usage
 
 To use, include the `ScheduleAttributes` module in your model class.
 
-```ruby
-class SomeModel
-  include ScheduleAttributes
-end
-```
+    class SomeModel
+      include ScheduleAttributes
+    end
 
 Your model must respond to `:schedule_yaml` and `:schedule_yaml=`, because ScheduleAttributes will serialize and deserialize the schedule in YAML using this column.  If you are using ActiveRecord, make a string column called `schedule_yaml`. If you're using Mongoid, make a string field like so: `field :schedule_yaml`.
 
@@ -22,9 +22,7 @@ Accepts form a parameter hash that represent a schedule, and creates an `IceCube
 
 E.x.
 
-```ruby
-@event.schedule_attributes = params[:event][:schedule_attributes]
-```
+    @event.schedule_attributes = params[:event][:schedule_attributes]
 
 ### Parameters Accepted
 
