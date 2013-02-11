@@ -17,6 +17,12 @@ module ScheduleAtts
 
   def schedule_attributes=(options)
     options = options.dup
+
+    # Convert all keys to symbols
+    options.keys.each do |key|
+      options[(key.to_sym rescue key) || key] = options.delete(key)
+    end
+
     options[:interval] = options[:interval].to_i
     options[:start_date] &&= ScheduleAttributes.parse_in_timezone(options[:start_date])
     options[:date]       &&= ScheduleAttributes.parse_in_timezone(options[:date])
